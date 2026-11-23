@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
+import capaAdrianoNoronha from './assets/adriano-noronha-capa.webp'
 import {
   Gift,
   Heart,
@@ -111,6 +112,7 @@ export type Exemplo = {
   categoria: string
   descricao: string
   url: string
+  capa: string
 }
 
 export const exemplos: Exemplo[] = [
@@ -120,6 +122,7 @@ export const exemplos: Exemplo[] = [
     descricao:
       'Site de passeios em Fernando de Noronha, com reservas direto pelo WhatsApp.',
     url: 'https://adriano-noronha.vercel.app/',
+    capa: capaAdrianoNoronha,
   },
 ]
 
