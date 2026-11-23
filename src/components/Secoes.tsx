@@ -424,11 +424,12 @@ export function Exemplos() {
           sobretitulo="Trabalhos"
           titulo="Sites que já estão no ar"
         />
-        <ul className="grid gap-5 md:grid-cols-2">
-          {exemplos.map((exemplo) => (
+        <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {exemplos.map((exemplo, indice) => (
             <Revelar
               como="li"
               key={exemplo.url}
+              atraso={indice * 120}
               className="group border-borda flex flex-col overflow-hidden rounded-3xl border bg-white transition-shadow duration-300 hover:shadow-[0_40px_80px_-40px_rgb(123_45_67/0.5)]"
             >
               <a
@@ -485,8 +486,8 @@ export function Exemplos() {
           ))}
           <Revelar
             como="li"
-            atraso={150}
-            className="bg-noite relative flex flex-col items-center justify-center overflow-hidden rounded-3xl p-8 text-center md:p-12"
+            atraso={exemplos.length * 120}
+            className="bg-noite relative flex flex-col items-center justify-center overflow-hidden rounded-3xl p-8 text-center md:col-span-2 md:p-12 lg:col-span-1"
           >
             <span
               aria-hidden="true"

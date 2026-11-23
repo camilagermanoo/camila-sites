@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import capaAdrianoNoronha from './assets/adriano-noronha-capa.webp'
+import capaPortfolioCamila from './assets/portfolio-camila-capa.webp'
 import {
   Gift,
   Heart,
@@ -136,6 +137,14 @@ export const exemplos: Exemplo[] = [
       'Site de passeios em Fernando de Noronha, com reservas direto pelo WhatsApp.',
     url: 'https://adriano-noronha.vercel.app/',
     capa: capaAdrianoNoronha,
+  },
+  {
+    nome: 'Camila Rodrigues',
+    categoria: 'Portfólio pessoal',
+    descricao:
+      'Portfólio profissional com experiência, projetos e contato, em português e inglês.',
+    url: 'https://camilagermanoo.github.io/',
+    capa: capaPortfolioCamila,
   },
 ]
 
