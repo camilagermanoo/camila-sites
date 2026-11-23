@@ -1,59 +1,166 @@
 import { useState } from 'react'
-import { ArrowUpRight, ChevronDown, Mail, MessageCircle } from 'lucide-react'
+import type { ReactNode } from 'react'
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  Heart,
+  Mail,
+  MessageCircle,
+  Sparkles,
+} from 'lucide-react'
 import {
   contato,
   diferenciais,
   duvidas,
   etapas,
   exemplos,
+  letreiro,
   linkInstagram,
   linkWhatsapp,
   mensagemPadrao,
   servicos,
 } from '../content'
-import type { Servico } from '../content'
-import { Divisor, IconeInstagram } from './Icones'
+import { IconeInstagram } from './Icones'
+import { Revelar } from './Revelar'
 
 function Titulo({
   sobretitulo,
   titulo,
   id,
+  claro = false,
 }: {
   sobretitulo: string
   titulo: string
   id: string
+  claro?: boolean
 }) {
   return (
-    <div className="mb-10 text-center md:mb-14">
-      <p className="text-terracota mb-3 text-xs font-semibold tracking-[0.3em] uppercase">
+    <Revelar className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
+      <p
+        className={`mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-[0.2em] uppercase ${
+          claro ? 'text-rosa bg-white/10' : 'bg-blush text-vinho'
+        }`}
+      >
+        <Sparkles className="size-3.5" aria-hidden="true" />
         {sobretitulo}
       </p>
       <h2
         id={id}
-        className="font-serifa text-tinta text-4xl leading-tight font-semibold md:text-5xl"
+        className={`font-serifa text-4xl leading-[1.1] font-medium tracking-tight md:text-5xl ${
+          claro ? 'text-creme' : 'text-tinta'
+        }`}
       >
         {titulo}
       </h2>
-    </div>
+    </Revelar>
   )
 }
 
-function Cartao({ item }: { item: Servico }) {
-  const Icone = item.icone
+function BotaoWhatsapp({
+  children,
+  className = '',
+}: {
+  children: ReactNode
+  className?: string
+}) {
   return (
-    <li className="border-borda flex gap-4 rounded-2xl border bg-white p-5 transition-shadow hover:shadow-md md:p-6">
-      <span className="bg-rosa text-terracota flex size-11 shrink-0 items-center justify-center rounded-full">
-        <Icone className="size-5" aria-hidden="true" />
-      </span>
-      <div>
-        <h3 className="font-serifa text-tinta text-2xl font-semibold">
-          {item.titulo}
-        </h3>
-        <p className="text-suave mt-1 text-sm leading-relaxed">
-          {item.descricao}
-        </p>
+    <a
+      href={linkWhatsapp(mensagemPadrao)}
+      target="_blank"
+      rel="noreferrer"
+      className={`group bg-vinho hover:bg-vinho-escuro inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-semibold text-white shadow-[0_18px_40px_-15px_rgb(123_45_67/0.8)] transition-all duration-300 hover:-translate-y-1 ${className}`}
+    >
+      <MessageCircle
+        className="size-5 transition-transform group-hover:rotate-12"
+        aria-hidden="true"
+      />
+      {children}
+    </a>
+  )
+}
+
+function Vitrine() {
+  const capa = exemplos[0]
+  return (
+    <div className="relative mx-auto w-full max-w-md pb-10 lg:max-w-none lg:pb-0">
+      <div
+        aria-hidden="true"
+        className="border-dourado/50 animate-girar-lento absolute top-1/2 left-1/2 size-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed"
+      />
+      <div
+        aria-hidden="true"
+        className="from-rosa/60 to-pessego/40 absolute inset-6 rounded-full bg-gradient-to-br blur-3xl"
+      />
+
+      <div className="animate-flutuar-lento relative">
+        <div className="border-borda overflow-hidden rounded-2xl border bg-white shadow-[0_40px_80px_-30px_rgb(74_26_42/0.45)]">
+          <div className="border-borda flex items-center gap-1.5 border-b px-3 py-2.5">
+            <span className="bg-rosa size-2.5 rounded-full" />
+            <span className="bg-dourado/70 size-2.5 rounded-full" />
+            <span className="bg-borda size-2.5 rounded-full" />
+            <span className="bg-creme text-suave ml-2 truncate rounded-full px-3 py-0.5 text-[11px]">
+              {new URL(capa.url).host}
+            </span>
+          </div>
+          <img
+            src={capa.capa}
+            alt={`Capa do site ${capa.nome}`}
+            width={1200}
+            height={658}
+            className="aspect-[1200/658] w-full object-cover object-top"
+          />
+        </div>
       </div>
-    </li>
+
+      <div
+        aria-hidden="true"
+        className="animate-flutuar absolute -bottom-2 -left-3 w-[30%] min-w-28 [animation-delay:-2s] sm:-left-8 lg:-bottom-14"
+      >
+        <div className="bg-noite rounded-[1.6rem] p-1.5 shadow-[0_30px_60px_-20px_rgb(43_23_32/0.6)]">
+          <div className="from-blush to-creme flex flex-col items-center gap-1.5 rounded-[1.25rem] bg-gradient-to-b px-2.5 pt-5 pb-4">
+            <span className="bg-vinho font-assinatura flex size-9 items-center justify-center rounded-full text-base text-white">
+              CG
+            </span>
+            <span className="text-tinta text-[9px] font-semibold">
+              @{contato.instagram}
+            </span>
+            {['WhatsApp', 'Instagram', 'Portfólio'].map((rotulo, indice) => (
+              <span
+                key={rotulo}
+                className={`w-full rounded-full py-1 text-center text-[8px] font-semibold ${
+                  indice === 0
+                    ? 'bg-vinho text-white'
+                    : 'text-vinho border-rosa border bg-white'
+                }`}
+              >
+                {rotulo}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="animate-flutuar absolute -top-5 right-2 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-4s] sm:-right-6 md:text-sm"
+      >
+        <span className="flex size-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+          <Check className="size-3.5" />
+        </span>
+        Presença confirmada
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="animate-flutuar absolute right-0 bottom-0 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-1s] sm:-right-4 md:text-sm lg:-bottom-8"
+      >
+        <span className="bg-blush text-vinho flex size-6 items-center justify-center rounded-full">
+          <Heart className="size-3.5 fill-current" />
+        </span>
+        Novo pedido no WhatsApp
+      </div>
+    </div>
   )
 }
 
@@ -62,56 +169,90 @@ export function Inicio() {
     <section
       id="inicio"
       aria-labelledby="titulo-inicio"
-      className="relative overflow-hidden"
+      className="granulado relative -mt-16 overflow-hidden pt-16 md:-mt-20 md:pt-20"
     >
-      <span
-        aria-hidden="true"
-        className="bg-rosa-claro absolute -top-32 -right-32 size-96 rounded-full md:-top-40 md:-right-20 md:size-[32rem]"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute -bottom-24 -left-24 size-72 rounded-full bg-[#EEF0E8]"
-      />
-      <div className="relative mx-auto max-w-4xl px-5 pt-16 pb-20 text-center md:pt-28 md:pb-32">
-        <p className="text-terracota text-xs font-semibold tracking-[0.3em] uppercase md:text-sm">
-          Criação de sites personalizados
-        </p>
-        <h1 id="titulo-inicio" className="mt-6">
-          <span className="font-serifa text-terracota block text-5xl font-medium italic md:text-7xl">
-            a sua ideia
-          </span>
-          <span className="font-serifa text-tinta mt-2 block text-4xl leading-tight font-semibold md:text-6xl">
-            merece um site
-            <br />
-            bonito de verdade
-          </span>
-        </h1>
-        <p className="text-suave mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg">
-          Crio sites delicados, modernos e fáceis de usar para eventos,
-          negócios, projetos pessoais e tudo o que você imaginar.
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href={linkWhatsapp(mensagemPadrao)}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-terracota hover:bg-terracota-escuro inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white shadow-md transition-colors sm:w-auto"
+      <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 pt-12 pb-20 md:pt-20 md:pb-28 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+        <div className="text-center lg:text-left">
+          <Revelar>
+            <p className="text-vinho inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase shadow-sm backdrop-blur">
+              <Sparkles className="size-3.5" aria-hidden="true" />
+              Criação de sites personalizados
+            </p>
+          </Revelar>
+          <Revelar atraso={100}>
+            <h1
+              id="titulo-inicio"
+              className="font-serifa text-tinta mt-6 text-[2.75rem] leading-[1.02] font-medium tracking-tight sm:text-6xl lg:text-[4.4rem]"
+            >
+              <span className="texto-degrade block pb-1 italic">
+                a sua ideia
+              </span>{' '}
+              merece um site bonito de verdade
+            </h1>
+          </Revelar>
+          <Revelar atraso={200}>
+            <p className="text-suave mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg lg:mx-0">
+              Crio sites delicados, modernos e fáceis de usar para eventos,
+              negócios, projetos pessoais e tudo o que você imaginar.
+            </p>
+          </Revelar>
+          <Revelar
+            atraso={300}
+            className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
           >
-            <MessageCircle className="size-4" aria-hidden="true" />
-            Quero meu site
-          </a>
-          <a
-            href="#servicos"
-            className="border-terracota/40 text-terracota hover:bg-rosa-claro inline-flex w-full items-center justify-center rounded-full border px-7 py-3.5 text-sm font-semibold transition-colors sm:w-auto"
-          >
-            Ver tipos de site
-          </a>
+            <BotaoWhatsapp className="w-full sm:w-auto">
+              Quero meu site
+            </BotaoWhatsapp>
+            <a
+              href="#exemplos"
+              className="text-vinho border-vinho/25 inline-flex w-full items-center justify-center gap-1.5 rounded-full border bg-white/60 px-7 py-4 font-semibold backdrop-blur transition-colors hover:bg-white sm:w-auto"
+            >
+              Ver exemplos
+              <ArrowUpRight className="size-4" aria-hidden="true" />
+            </a>
+          </Revelar>
+          <Revelar atraso={400}>
+            <ul className="text-suave mt-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm lg:justify-start">
+              {[
+                'Feito sob medida',
+                'Perfeito no celular',
+                'Orçamento sem compromisso',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-1.5">
+                  <Check className="text-vinho size-4" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Revelar>
         </div>
-        <div className="mt-14">
-          <Divisor />
-        </div>
+        <Revelar atraso={250}>
+          <Vitrine />
+        </Revelar>
       </div>
     </section>
+  )
+}
+
+export function Letreiro() {
+  const itens = [...letreiro, ...letreiro]
+  return (
+    <div
+      aria-hidden="true"
+      className="bg-vinho text-creme relative overflow-hidden py-4 md:py-5"
+    >
+      <div className="animate-letreiro flex w-max gap-8 md:gap-10">
+        {itens.map((item, indice) => (
+          <span
+            key={`${item}-${indice}`}
+            className="font-serifa flex items-center gap-8 text-xl whitespace-nowrap italic md:gap-10 md:text-2xl"
+          >
+            {item}
+            <Sparkles className="text-dourado size-4" />
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -120,30 +261,59 @@ export function Servicos() {
     <section
       id="servicos"
       aria-labelledby="titulo-servicos"
-      className="px-5 py-20 md:py-28"
+      className="px-5 py-24 md:py-32"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <Titulo
           id="titulo-servicos"
           sobretitulo="O que eu faço"
           titulo="Sites para cada momento"
         />
-        <ul className="grid gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
-          {servicos.map((item) => (
-            <Cartao key={item.titulo} item={item} />
-          ))}
+        <ul className="grid gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3">
+          {servicos.map((item, indice) => {
+            const Icone = item.icone
+            return (
+              <Revelar
+                como="li"
+                key={item.titulo}
+                atraso={indice * 80}
+                className="group border-borda hover:border-rosa relative overflow-hidden rounded-3xl border bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgb(123_45_67/0.45)]"
+              >
+                <span
+                  aria-hidden="true"
+                  className="bg-blush absolute -top-10 -right-10 size-32 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <div className="relative flex items-start justify-between">
+                  <span className="bg-blush text-vinho group-hover:bg-vinho flex size-12 items-center justify-center rounded-2xl transition-colors duration-300 group-hover:text-white">
+                    <Icone className="size-5" aria-hidden="true" />
+                  </span>
+                  <span className="font-serifa text-rosa text-2xl italic">
+                    {String(indice + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="font-serifa text-tinta relative mt-6 text-2xl font-medium">
+                  {item.titulo}
+                </h3>
+                <p className="text-suave relative mt-2 leading-relaxed">
+                  {item.descricao}
+                </p>
+              </Revelar>
+            )
+          })}
         </ul>
-        <p className="text-suave mt-10 text-center">
-          Tem outra ideia?{' '}
-          <a
-            href={linkWhatsapp(mensagemPadrao)}
-            target="_blank"
-            rel="noreferrer"
-            className="text-terracota font-semibold underline-offset-4 hover:underline"
-          >
-            É só me contar que eu crio do seu jeito.
-          </a>
-        </p>
+        <Revelar className="mt-12 text-center">
+          <p className="text-suave">
+            Tem outra ideia?{' '}
+            <a
+              href={linkWhatsapp(mensagemPadrao)}
+              target="_blank"
+              rel="noreferrer"
+              className="text-vinho decoration-rosa font-semibold underline decoration-2 underline-offset-4 hover:decoration-current"
+            >
+              É só me contar que eu crio do seu jeito.
+            </a>
+          </p>
+        </Revelar>
       </div>
     </section>
   )
@@ -153,18 +323,45 @@ export function Diferenciais() {
   return (
     <section
       aria-labelledby="titulo-diferenciais"
-      className="bg-rosa-claro px-5 py-20 md:py-28"
+      className="bg-noite relative overflow-hidden px-5 py-24 md:py-32"
     >
-      <div className="mx-auto max-w-5xl">
+      <span
+        aria-hidden="true"
+        className="bg-vinho/60 absolute -top-40 -left-40 size-[28rem] rounded-full blur-3xl"
+      />
+      <span
+        aria-hidden="true"
+        className="bg-dourado/20 absolute -right-32 -bottom-40 size-[26rem] rounded-full blur-3xl"
+      />
+      <div className="relative mx-auto max-w-6xl">
         <Titulo
           id="titulo-diferenciais"
           sobretitulo="Por que ter um site"
           titulo="Bonito, prático e do seu jeito"
+          claro
         />
-        <ul className="grid gap-4 sm:grid-cols-2 md:gap-5">
-          {diferenciais.map((item) => (
-            <Cartao key={item.titulo} item={item} />
-          ))}
+        <ul className="grid gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
+          {diferenciais.map((item, indice) => {
+            const Icone = item.icone
+            return (
+              <Revelar
+                como="li"
+                key={item.titulo}
+                atraso={indice * 90}
+                className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-colors duration-300 hover:bg-white/[0.08]"
+              >
+                <span className="from-rosa to-pessego text-noite flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br">
+                  <Icone className="size-5" aria-hidden="true" />
+                </span>
+                <h3 className="font-serifa text-creme mt-6 text-2xl font-medium">
+                  {item.titulo}
+                </h3>
+                <p className="text-creme/70 mt-2 leading-relaxed">
+                  {item.descricao}
+                </p>
+              </Revelar>
+            )
+          })}
         </ul>
       </div>
     </section>
@@ -176,24 +373,37 @@ export function ComoFunciona() {
     <section
       id="como-funciona"
       aria-labelledby="titulo-como-funciona"
-      className="px-5 py-20 md:py-28"
+      className="px-5 py-24 md:py-32"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <Titulo
           id="titulo-como-funciona"
           sobretitulo="Como funciona"
           titulo="Simples do começo ao fim"
         />
-        <ol className="grid gap-10 md:grid-cols-3 md:gap-6">
-          {etapas.map((etapa) => (
-            <li key={etapa.numero} className="text-center">
-              <span className="font-serifa text-terracota text-5xl font-semibold italic">
+        <ol className="relative grid gap-10 md:grid-cols-3 md:gap-8">
+          <span
+            aria-hidden="true"
+            className="via-rosa absolute top-10 right-[16%] left-[16%] hidden h-px bg-gradient-to-r from-transparent to-transparent md:block"
+          />
+          <span
+            aria-hidden="true"
+            className="via-rosa absolute top-10 bottom-10 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent to-transparent md:hidden"
+          />
+          {etapas.map((etapa, indice) => (
+            <Revelar
+              como="li"
+              key={etapa.numero}
+              atraso={indice * 150}
+              className="relative text-center"
+            >
+              <span className="border-rosa bg-creme font-serifa text-vinho relative mx-auto flex size-20 items-center justify-center rounded-full border-2 text-3xl italic shadow-[0_15px_35px_-15px_rgb(123_45_67/0.5)]">
                 {etapa.numero}
               </span>
-              <p className="text-tinta mx-auto mt-2 max-w-[14rem] text-base">
+              <p className="bg-creme text-tinta relative mx-auto mt-5 max-w-[15rem] py-1 text-lg font-medium">
                 {etapa.titulo}
               </p>
-            </li>
+            </Revelar>
           ))}
         </ol>
       </div>
@@ -206,9 +416,9 @@ export function Exemplos() {
     <section
       id="exemplos"
       aria-labelledby="titulo-exemplos"
-      className="bg-white px-5 py-20 md:py-28"
+      className="bg-blush/60 px-5 py-24 md:py-32"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <Titulo
           id="titulo-exemplos"
           sobretitulo="Trabalhos"
@@ -216,9 +426,10 @@ export function Exemplos() {
         />
         <ul className="grid gap-5 md:grid-cols-2">
           {exemplos.map((exemplo) => (
-            <li
+            <Revelar
+              como="li"
               key={exemplo.url}
-              className="border-borda bg-creme flex flex-col overflow-hidden rounded-2xl border"
+              className="group border-borda flex flex-col overflow-hidden rounded-3xl border bg-white transition-shadow duration-300 hover:shadow-[0_40px_80px_-40px_rgb(123_45_67/0.5)]"
             >
               <a
                 href={exemplo.url}
@@ -226,9 +437,9 @@ export function Exemplos() {
                 rel="noreferrer"
                 tabIndex={-1}
                 aria-hidden="true"
-                className="group block p-4 pb-0 md:p-5 md:pb-0"
+                className="from-blush to-pessego/40 block bg-gradient-to-br p-5 pb-0 md:p-7 md:pb-0"
               >
-                <div className="border-borda overflow-hidden rounded-t-xl border border-b-0 bg-white shadow-sm">
+                <div className="overflow-hidden rounded-t-xl bg-white shadow-[0_-10px_40px_-20px_rgb(74_26_42/0.35)]">
                   <div className="border-borda flex items-center gap-1.5 border-b px-3 py-2">
                     <span className="bg-rosa size-2.5 rounded-full" />
                     <span className="bg-dourado/60 size-2.5 rounded-full" />
@@ -243,15 +454,15 @@ export function Exemplos() {
                     loading="lazy"
                     width={1200}
                     height={658}
-                    className="aspect-[1200/658] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="aspect-[1200/658] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 </div>
               </a>
-              <div className="flex flex-1 flex-col p-6 md:p-8">
-                <span className="bg-rosa text-terracota w-fit rounded-full px-3 py-1 text-xs font-semibold tracking-wider uppercase">
+              <div className="flex flex-1 flex-col p-7 md:p-8">
+                <span className="bg-blush text-vinho w-fit rounded-full px-3 py-1 text-xs font-semibold tracking-wider uppercase">
                   {exemplo.categoria}
                 </span>
-                <h3 className="font-serifa text-tinta mt-4 text-3xl font-semibold">
+                <h3 className="font-serifa text-tinta mt-4 text-3xl font-medium">
                   {exemplo.nome}
                 </h3>
                 <p className="text-suave mt-2 flex-1 leading-relaxed">
@@ -261,31 +472,42 @@ export function Exemplos() {
                   href={exemplo.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-terracota mt-6 inline-flex w-fit items-center gap-1.5 font-semibold underline-offset-4 hover:underline"
+                  className="text-vinho mt-6 inline-flex w-fit items-center gap-1.5 font-semibold"
                 >
                   Ver o site
-                  <ArrowUpRight className="size-4" aria-hidden="true" />
+                  <ArrowUpRight
+                    className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
                 </a>
               </div>
-            </li>
+            </Revelar>
           ))}
-          <li className="border-dourado flex flex-col items-center justify-center rounded-2xl border border-dashed p-6 text-center md:p-8">
-            <p className="font-serifa text-tinta text-3xl font-semibold">
+          <Revelar
+            como="li"
+            atraso={150}
+            className="bg-noite relative flex flex-col items-center justify-center overflow-hidden rounded-3xl p-8 text-center md:p-12"
+          >
+            <span
+              aria-hidden="true"
+              className="bg-vinho/70 absolute -top-20 -right-20 size-64 rounded-full blur-3xl"
+            />
+            <span
+              aria-hidden="true"
+              className="font-assinatura text-rosa relative text-5xl"
+            >
+              você?
+            </span>
+            <p className="font-serifa text-creme relative mt-4 text-3xl font-medium">
               O próximo pode ser o seu
             </p>
-            <p className="text-suave mt-2">
+            <p className="text-creme/70 relative mt-3">
               Me conte a sua ideia e vamos tirar ela do papel.
             </p>
-            <a
-              href={linkWhatsapp(mensagemPadrao)}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-terracota hover:bg-terracota-escuro mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition-colors"
-            >
-              <MessageCircle className="size-4" aria-hidden="true" />
+            <BotaoWhatsapp className="relative mt-8 text-sm">
               Conversar agora
-            </a>
-          </li>
+            </BotaoWhatsapp>
+          </Revelar>
         </ul>
       </div>
     </section>
@@ -297,28 +519,35 @@ export function Sobre() {
     <section
       id="sobre"
       aria-labelledby="titulo-sobre"
-      className="px-5 py-20 md:py-28"
+      className="px-5 py-24 md:py-32"
     >
-      <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 md:flex-row md:items-center md:gap-14">
-        <div
-          aria-hidden="true"
-          className="border-dourado bg-rosa flex size-40 shrink-0 items-center justify-center rounded-full border md:size-56"
-        >
-          <span className="font-assinatura text-terracota text-6xl md:text-7xl">
-            CG
-          </span>
-        </div>
-        <div className="text-center md:text-left">
-          <p className="text-terracota mb-3 text-xs font-semibold tracking-[0.3em] uppercase">
+      <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
+        <Revelar className="relative mx-auto">
+          <div
+            aria-hidden="true"
+            className="border-dourado/60 animate-girar-lento absolute -inset-4 rounded-full border border-dashed"
+          />
+          <div
+            aria-hidden="true"
+            className="from-blush via-rosa to-pessego relative flex size-48 items-center justify-center rounded-full bg-gradient-to-br shadow-[0_30px_60px_-25px_rgb(123_45_67/0.6)] md:size-64"
+          >
+            <span className="font-assinatura text-vinho text-7xl md:text-8xl">
+              CG
+            </span>
+          </div>
+        </Revelar>
+        <Revelar atraso={150} className="text-center md:text-left">
+          <p className="bg-blush text-vinho mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-[0.2em] uppercase">
+            <Sparkles className="size-3.5" aria-hidden="true" />
             Quem sou eu
           </p>
           <h2
             id="titulo-sobre"
-            className="font-serifa text-tinta text-4xl font-semibold md:text-5xl"
+            className="font-serifa text-tinta text-4xl font-medium tracking-tight md:text-5xl"
           >
-            Oi, eu sou a Camila!
+            Oi, eu sou a <span className="texto-degrade italic">Camila!</span>
           </h2>
-          <p className="text-suave mt-5 leading-relaxed">
+          <p className="text-suave mt-6 leading-relaxed">
             Sou desenvolvedora web, formada em Análise e Desenvolvimento de
             Sistemas, e trabalho com React e TypeScript, tecnologias modernas
             usadas no mercado. Gosto de unir código bem feito com um visual
@@ -328,16 +557,33 @@ export function Sobre() {
             Cada projeto é único: eu escuto a sua ideia e crio um site com a sua
             identidade, do jeitinho que você imaginou.
           </p>
+          <ul className="mt-6 flex flex-wrap justify-center gap-2 md:justify-start">
+            {[
+              'Formada em ADS',
+              'React e TypeScript',
+              'Atendimento pelo WhatsApp',
+            ].map((item) => (
+              <li
+                key={item}
+                className="border-borda text-tinta rounded-full border bg-white px-4 py-2 text-sm font-medium"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
           <a
             href={contato.portfolio}
             target="_blank"
             rel="noreferrer"
-            className="text-terracota mt-6 inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:underline"
+            className="text-vinho decoration-rosa mt-7 inline-block font-semibold underline decoration-2 underline-offset-4 hover:decoration-current"
           >
-            Conheça meu portfólio de desenvolvedora
-            <ArrowUpRight className="size-4" aria-hidden="true" />
+            Conheça meu portfólio de desenvolvedora{' '}
+            <ArrowUpRight
+              className="inline size-4 align-[-2px]"
+              aria-hidden="true"
+            />
           </a>
-        </div>
+        </Revelar>
       </div>
     </section>
   )
@@ -350,7 +596,7 @@ export function Duvidas() {
     <section
       id="duvidas"
       aria-labelledby="titulo-duvidas"
-      className="bg-rosa-claro px-5 py-20 md:py-28"
+      className="bg-blush/60 px-5 py-24 md:py-32"
     >
       <div className="mx-auto max-w-3xl">
         <Titulo
@@ -363,9 +609,15 @@ export function Duvidas() {
             const estaAberta = aberta === indice
             const idResposta = `resposta-${indice}`
             return (
-              <li
+              <Revelar
+                como="li"
                 key={item.pergunta}
-                className="border-borda rounded-2xl border bg-white"
+                atraso={indice * 70}
+                className={`rounded-2xl border bg-white transition-shadow duration-300 ${
+                  estaAberta
+                    ? 'border-rosa shadow-[0_20px_50px_-30px_rgb(123_45_67/0.5)]'
+                    : 'border-borda'
+                }`}
               >
                 <h3>
                   <button
@@ -373,23 +625,35 @@ export function Duvidas() {
                     aria-expanded={estaAberta}
                     aria-controls={idResposta}
                     onClick={() => setAberta(estaAberta ? null : indice)}
-                    className="text-tinta flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold md:px-6 md:py-5"
+                    className="text-tinta flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-semibold md:px-7"
                   >
                     {item.pergunta}
-                    <ChevronDown
-                      aria-hidden="true"
-                      className={`text-terracota size-5 shrink-0 transition-transform ${estaAberta ? 'rotate-180' : ''}`}
-                    />
+                    <span
+                      className={`flex size-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        estaAberta
+                          ? 'bg-vinho rotate-180 text-white'
+                          : 'bg-blush text-vinho'
+                      }`}
+                    >
+                      <ChevronDown className="size-4" aria-hidden="true" />
+                    </span>
                   </button>
                 </h3>
                 <div
                   id={idResposta}
-                  hidden={!estaAberta}
-                  className="text-suave px-5 pb-5 leading-relaxed md:px-6"
+                  inert={!estaAberta}
+                  aria-hidden={!estaAberta}
+                  className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                    estaAberta ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                  }`}
                 >
-                  {item.resposta}
+                  <div className="overflow-hidden">
+                    <p className="text-suave px-5 pb-6 leading-relaxed md:px-7">
+                      {item.resposta}
+                    </p>
+                  </div>
                 </div>
-              </li>
+              </Revelar>
             )
           })}
         </ul>
@@ -403,59 +667,77 @@ export function Contato() {
     <section
       id="contato"
       aria-labelledby="titulo-contato"
-      className="px-5 py-20 md:py-28"
+      className="px-5 py-24 md:py-32"
     >
-      <div className="bg-rosa mx-auto max-w-3xl rounded-3xl px-6 py-12 text-center md:px-12 md:py-16">
-        <h2
-          id="titulo-contato"
-          className="font-serifa text-tinta text-4xl font-semibold md:text-5xl"
-        >
-          Vamos criar o seu?
-        </h2>
-        <p className="text-suave mt-3">
-          Chame para um orçamento sem compromisso
-        </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-          <a
-            href={linkWhatsapp(mensagemPadrao)}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-terracota hover:bg-terracota-escuro inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-semibold text-white shadow-md transition-colors sm:w-auto"
+      <Revelar className="from-vinho via-vinho-escuro to-noite relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-gradient-to-br px-6 py-16 text-center md:px-16 md:py-20">
+        <span
+          aria-hidden="true"
+          className="bg-rosa/30 absolute -top-24 -left-24 size-72 rounded-full blur-3xl"
+        />
+        <span
+          aria-hidden="true"
+          className="bg-dourado/25 absolute -right-24 -bottom-24 size-72 rounded-full blur-3xl"
+        />
+        <div className="relative">
+          <span
+            aria-hidden="true"
+            className="font-assinatura text-rosa text-4xl md:text-5xl"
           >
-            <MessageCircle className="size-5" aria-hidden="true" />
-            {contato.whatsappExibicao}
-          </a>
-          <a
-            href={linkInstagram}
-            target="_blank"
-            rel="noreferrer"
-            className="text-terracota inline-flex items-center gap-2 font-semibold"
+            vamos lá?
+          </span>
+          <h2
+            id="titulo-contato"
+            className="font-serifa text-creme mt-3 text-4xl font-medium tracking-tight md:text-6xl"
           >
-            <IconeInstagram className="size-5" />@{contato.instagram}
+            Vamos criar o seu?
+          </h2>
+          <p className="text-creme/75 mt-4 text-lg">
+            Chame para um orçamento sem compromisso
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+            <a
+              href={linkWhatsapp(mensagemPadrao)}
+              target="_blank"
+              rel="noreferrer"
+              className="text-vinho inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-4 font-semibold shadow-[0_20px_40px_-15px_rgb(0_0_0/0.5)] transition-transform duration-300 hover:-translate-y-1 sm:w-auto"
+            >
+              <MessageCircle className="size-5" aria-hidden="true" />
+              {contato.whatsappExibicao}
+            </a>
+            <a
+              href={linkInstagram}
+              target="_blank"
+              rel="noreferrer"
+              className="text-creme inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-7 py-4 font-semibold transition-colors hover:bg-white/10 sm:w-auto"
+            >
+              <IconeInstagram className="size-5" />@{contato.instagram}
+            </a>
+          </div>
+          <a
+            href={`mailto:${contato.email}`}
+            className="text-creme/70 hover:text-creme mt-7 inline-flex items-center gap-2 text-sm transition-colors"
+          >
+            <Mail className="size-4" aria-hidden="true" />
+            {contato.email}
           </a>
         </div>
-        <a
-          href={`mailto:${contato.email}`}
-          className="text-suave hover:text-terracota mt-6 inline-flex items-center gap-2 text-sm"
-        >
-          <Mail className="size-4" aria-hidden="true" />
-          {contato.email}
-        </a>
-      </div>
+      </Revelar>
     </section>
   )
 }
 
 export function Rodape() {
   return (
-    <footer className="border-borda border-t px-5 py-10 text-center">
-      <p className="font-assinatura text-terracota text-3xl">
-        Camila Germano Rodrigues
-      </p>
-      <p className="text-suave mt-3 text-xs">
-        © {new Date().getFullYear()} Camila Germano. Criação de sites
-        personalizados.
-      </p>
+    <footer className="border-borda border-t px-5 pt-10 pb-24 md:pb-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 text-center md:flex-row md:text-left">
+        <p className="font-assinatura text-vinho text-3xl">
+          Camila Germano Rodrigues
+        </p>
+        <p className="text-suave text-xs">
+          © {new Date().getFullYear()} Camila Germano. Criação de sites
+          personalizados.
+        </p>
+      </div>
     </footer>
   )
 }
