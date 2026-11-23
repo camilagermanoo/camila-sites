@@ -7,7 +7,6 @@ import {
   Duvidas,
   Exemplos,
   Inicio,
-  Letreiro,
   Rodape,
   Servicos,
   Sobre,
@@ -20,7 +19,6 @@ export default function App() {
       <Cabecalho />
       <main>
         <Inicio />
-        <Letreiro />
         <Servicos />
         <Diferenciais />
         <ComoFunciona />

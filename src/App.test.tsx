@@ -17,6 +17,13 @@ describe('site de vendas', () => {
     ).toBeInTheDocument()
   })
 
+  it('mantém o início limpo, sem prévia de site de cliente', () => {
+    render(<App />)
+    const inicio = screen.getByRole('region', { name: /a sua ideia/i })
+    expect(within(inicio).queryByRole('img')).not.toBeInTheDocument()
+    expect(inicio.querySelector('img')).toBeNull()
+  })
+
   it('lista todos os tipos de site', () => {
     render(<App />)
     const secao = screen.getByRole('region', {
