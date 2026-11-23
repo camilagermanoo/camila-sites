@@ -91,14 +91,13 @@ describe('quem sou eu', () => {
   it('mostra as tags de apresentação', () => {
     render(<App />)
     const secao = screen.getByRole('region', { name: /Oi, eu sou a/i })
-    ;[
-      'Formada em ADS',
-      'Atendimento personalizado',
-      'Conversa direta pelo WhatsApp',
-    ].forEach((tag) => {
-      expect(within(secao).getByText(tag)).toBeInTheDocument()
-    })
+    ;['Atendimento personalizado', 'Conversa direta pelo WhatsApp'].forEach(
+      (tag) => {
+        expect(within(secao).getByText(tag)).toBeInTheDocument()
+      },
+    )
     expect(secao).not.toHaveTextContent(/React|TypeScript/)
+    expect(within(secao).queryByText('Formada em ADS')).not.toBeInTheDocument()
   })
 })
 
