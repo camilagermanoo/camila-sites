@@ -94,13 +94,11 @@ describe('quem sou eu', () => {
     ;[
       'Formada em ADS',
       'Atendimento personalizado',
-      'Atendimento pelo WhatsApp',
+      'Conversa direta pelo WhatsApp',
     ].forEach((tag) => {
       expect(within(secao).getByText(tag)).toBeInTheDocument()
     })
-    expect(
-      within(secao).queryByText('React e TypeScript'),
-    ).not.toBeInTheDocument()
+    expect(secao).not.toHaveTextContent(/React|TypeScript/)
   })
 })
 
