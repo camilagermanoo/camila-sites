@@ -19,8 +19,9 @@ import {
   mensagemPadrao,
   servicos,
 } from '../content'
-import { Divisor, IconeInstagram } from './Icones'
+import { IconeInstagram } from './Icones'
 import { Revelar } from './Revelar'
+import { Vitrine } from './Vitrine'
 
 function Titulo({
   sobretitulo,
@@ -85,61 +86,63 @@ export function Inicio() {
       aria-labelledby="titulo-inicio"
       className="granulado relative -mt-16 overflow-hidden pt-16 md:-mt-20 md:pt-20"
     >
-      <div className="mx-auto max-w-4xl px-5 pt-16 pb-20 text-center md:pt-28 md:pb-28">
-        <Revelar>
-          <p className="text-vinho inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase shadow-sm backdrop-blur">
-            <Sparkles className="size-3.5" aria-hidden="true" />
-            Criação de sites personalizados
-          </p>
-        </Revelar>
-        <Revelar atraso={100}>
-          <h1
-            id="titulo-inicio"
-            className="font-serifa text-tinta mt-7 text-[2.75rem] leading-[1.04] font-medium tracking-tight sm:text-6xl lg:text-7xl"
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-5 pt-16 pb-20 md:pt-24 md:pb-28 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
+        <div className="text-center lg:text-left">
+          <Revelar>
+            <p className="text-vinho inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase shadow-sm backdrop-blur">
+              <Sparkles className="size-3.5" aria-hidden="true" />
+              Criação de sites personalizados
+            </p>
+          </Revelar>
+          <Revelar atraso={100}>
+            <h1
+              id="titulo-inicio"
+              className="font-serifa text-tinta mt-7 text-[2.75rem] leading-[1.04] font-medium tracking-tight sm:text-6xl lg:text-[4.1rem]"
+            >
+              <span className="texto-degrade block pb-1 italic">
+                a sua ideia
+              </span>{' '}
+              merece um site
+              <br className="hidden sm:block lg:hidden" /> bonito de verdade
+            </h1>
+          </Revelar>
+          <Revelar atraso={200}>
+            <p className="text-suave mx-auto mt-7 max-w-xl text-base leading-relaxed md:text-lg lg:mx-0">
+              Crio sites delicados, modernos e fáceis de usar para eventos,
+              negócios, projetos pessoais e tudo o que você imaginar.
+            </p>
+          </Revelar>
+          <Revelar
+            atraso={300}
+            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start"
           >
-            <span className="texto-degrade block pb-1 italic">a sua ideia</span>{' '}
-            merece um site
-            <br className="hidden sm:block" /> bonito de verdade
-          </h1>
-        </Revelar>
-        <Revelar atraso={200}>
-          <p className="text-suave mx-auto mt-7 max-w-xl text-base leading-relaxed md:text-lg">
-            Crio sites delicados, modernos e fáceis de usar para eventos,
-            negócios, projetos pessoais e tudo o que você imaginar.
-          </p>
-        </Revelar>
-        <Revelar
-          atraso={300}
-          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
-        >
-          <BotaoWhatsapp className="w-full sm:w-auto">
-            Quero meu site
-          </BotaoWhatsapp>
-          <a
-            href="#exemplos"
-            className="text-vinho border-vinho/25 inline-flex w-full items-center justify-center gap-1.5 rounded-full border bg-white/60 px-7 py-4 font-semibold backdrop-blur transition-colors hover:bg-white sm:w-auto"
-          >
-            Ver exemplos
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
-        </Revelar>
-        <Revelar atraso={400}>
-          <ul className="text-suave mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-            {[
-              'Feito sob medida',
-              'Perfeito no celular',
-              'Orçamento sem compromisso',
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-1.5">
-                <Check className="text-vinho size-4" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Revelar>
-        <Revelar atraso={500} className="mt-14">
-          <Divisor />
-        </Revelar>
+            <BotaoWhatsapp className="w-full sm:w-auto">
+              Quero meu site
+            </BotaoWhatsapp>
+            <a
+              href="#exemplos"
+              className="text-vinho border-vinho/25 inline-flex w-full items-center justify-center gap-1.5 rounded-full border bg-white/60 px-7 py-4 font-semibold backdrop-blur transition-colors hover:bg-white sm:w-auto"
+            >
+              Ver exemplos
+              <ArrowUpRight className="size-4" aria-hidden="true" />
+            </a>
+          </Revelar>
+          <Revelar atraso={400}>
+            <ul className="text-suave mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm lg:justify-start">
+              {[
+                'Feito sob medida',
+                'Perfeito no celular',
+                'Orçamento sem compromisso',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-1.5">
+                  <Check className="text-vinho size-4" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Revelar>
+        </div>
+        <Vitrine />
       </div>
     </section>
   )

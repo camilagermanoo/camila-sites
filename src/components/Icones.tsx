@@ -18,20 +18,3 @@ export function IconeInstagram({ className }: Props) {
     </svg>
   )
 }
-
-export function Divisor() {
-  return (
-    <div className="flex items-center justify-center gap-4" aria-hidden="true">
-      <span className="bg-dourado h-px w-24 sm:w-36" />
-      <svg viewBox="0 0 24 24" className="text-dourado size-5" fill="none">
-        <path
-          d="M12 20s-7.5-4.3-7.5-9.6C4.5 7.7 6.5 6 8.6 6c1.5 0 2.7.8 3.4 2 .7-1.2 1.9-2 3.4-2 2.1 0 4.1 1.7 4.1 4.4C19.5 15.7 12 20 12 20z"
-          stroke="currentColor"
-          strokeWidth={1.6}
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="bg-dourado h-px w-24 sm:w-36" />
-    </div>
-  )
-}

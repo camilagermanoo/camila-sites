@@ -24,6 +24,14 @@ describe('site de vendas', () => {
     expect(inicio.querySelector('img')).toBeNull()
   })
 
+  it('mostra no início exemplos de tipos de site', () => {
+    render(<App />)
+    const inicio = screen.getByRole('region', { name: /a sua ideia/i })
+    ;['Casamento', 'Link na bio', 'Cardápio'].forEach((tipo) => {
+      expect(within(inicio).getAllByText(tipo).length).toBeGreaterThan(0)
+    })
+  })
+
   it('lista todos os tipos de site', () => {
     render(<App />)
     const secao = screen.getByRole('region', {
