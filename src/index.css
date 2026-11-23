@@ -16,27 +16,7 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-assinatura: 'Parisienne', cursive;
 
-  --animate-flutuar: flutuar 6s ease-in-out infinite;
-  --animate-flutuar-lento: flutuar 8s ease-in-out infinite;
-  --animate-letreiro: letreiro 32s linear infinite;
   --animate-pulsar: pulsar 2.4s ease-out infinite;
-  --animate-girar-lento: girar 40s linear infinite;
-
-  @keyframes flutuar {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-12px);
-    }
-  }
-
-  @keyframes letreiro {
-    to {
-      transform: translateX(-50%);
-    }
-  }
 
   @keyframes pulsar {
     0% {
@@ -46,12 +26,6 @@
     100% {
       transform: scale(1.7);
       opacity: 0;
-    }
-  }
-
-  @keyframes girar {
-    to {
-      transform: rotate(360deg);
     }
   }
 }

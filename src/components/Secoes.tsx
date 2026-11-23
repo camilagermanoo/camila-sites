@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
-  Heart,
   Mail,
   MessageCircle,
   Sparkles,
@@ -15,13 +14,12 @@ import {
   duvidas,
   etapas,
   exemplos,
-  letreiro,
   linkInstagram,
   linkWhatsapp,
   mensagemPadrao,
   servicos,
 } from '../content'
-import { IconeInstagram } from './Icones'
+import { Divisor, IconeInstagram } from './Icones'
 import { Revelar } from './Revelar'
 
 function Titulo({
@@ -80,90 +78,6 @@ function BotaoWhatsapp({
   )
 }
 
-function Vitrine() {
-  const capa = exemplos[0]
-  return (
-    <div className="relative mx-auto w-full max-w-md pb-10 lg:max-w-none lg:pb-0">
-      <div
-        aria-hidden="true"
-        className="border-dourado/50 animate-girar-lento absolute top-1/2 left-1/2 size-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed"
-      />
-      <div
-        aria-hidden="true"
-        className="from-rosa/60 to-pessego/40 absolute inset-6 rounded-full bg-gradient-to-br blur-3xl"
-      />
-
-      <div className="animate-flutuar-lento relative">
-        <div className="border-borda overflow-hidden rounded-2xl border bg-white shadow-[0_40px_80px_-30px_rgb(74_26_42/0.45)]">
-          <div className="border-borda flex items-center gap-1.5 border-b px-3 py-2.5">
-            <span className="bg-rosa size-2.5 rounded-full" />
-            <span className="bg-dourado/70 size-2.5 rounded-full" />
-            <span className="bg-borda size-2.5 rounded-full" />
-            <span className="bg-creme text-suave ml-2 truncate rounded-full px-3 py-0.5 text-[11px]">
-              {new URL(capa.url).host}
-            </span>
-          </div>
-          <img
-            src={capa.capa}
-            alt={`Capa do site ${capa.nome}`}
-            width={1200}
-            height={658}
-            className="aspect-[1200/658] w-full object-cover object-top"
-          />
-        </div>
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="animate-flutuar absolute -bottom-2 -left-3 w-[30%] min-w-28 [animation-delay:-2s] sm:-left-8 lg:-bottom-14"
-      >
-        <div className="bg-noite rounded-[1.6rem] p-1.5 shadow-[0_30px_60px_-20px_rgb(43_23_32/0.6)]">
-          <div className="from-blush to-creme flex flex-col items-center gap-1.5 rounded-[1.25rem] bg-gradient-to-b px-2.5 pt-5 pb-4">
-            <span className="bg-vinho font-assinatura flex size-9 items-center justify-center rounded-full text-base text-white">
-              CG
-            </span>
-            <span className="text-tinta text-[9px] font-semibold">
-              @{contato.instagram}
-            </span>
-            {['WhatsApp', 'Instagram', 'Portfólio'].map((rotulo, indice) => (
-              <span
-                key={rotulo}
-                className={`w-full rounded-full py-1 text-center text-[8px] font-semibold ${
-                  indice === 0
-                    ? 'bg-vinho text-white'
-                    : 'text-vinho border-rosa border bg-white'
-                }`}
-              >
-                {rotulo}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="animate-flutuar absolute -top-5 right-2 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-4s] sm:-right-6 md:text-sm lg:right-2 xl:-right-6"
-      >
-        <span className="flex size-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-          <Check className="size-3.5" />
-        </span>
-        Presença confirmada
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="animate-flutuar absolute right-0 bottom-0 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-1s] sm:-right-4 md:text-sm lg:right-2 lg:-bottom-8 xl:-right-4"
-      >
-        <span className="bg-blush text-vinho flex size-6 items-center justify-center rounded-full">
-          <Heart className="size-3.5 fill-current" />
-        </span>
-        Novo pedido no WhatsApp
-      </div>
-    </div>
-  )
-}
-
 export function Inicio() {
   return (
     <section
@@ -171,88 +85,63 @@ export function Inicio() {
       aria-labelledby="titulo-inicio"
       className="granulado relative -mt-16 overflow-hidden pt-16 md:-mt-20 md:pt-20"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 pt-12 pb-20 md:pt-20 md:pb-28 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
-        <div className="text-center lg:text-left">
-          <Revelar>
-            <p className="text-vinho inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase shadow-sm backdrop-blur">
-              <Sparkles className="size-3.5" aria-hidden="true" />
-              Criação de sites personalizados
-            </p>
-          </Revelar>
-          <Revelar atraso={100}>
-            <h1
-              id="titulo-inicio"
-              className="font-serifa text-tinta mt-6 text-[2.75rem] leading-[1.02] font-medium tracking-tight sm:text-6xl lg:text-[4.4rem]"
-            >
-              <span className="texto-degrade block pb-1 italic">
-                a sua ideia
-              </span>{' '}
-              merece um site bonito de verdade
-            </h1>
-          </Revelar>
-          <Revelar atraso={200}>
-            <p className="text-suave mx-auto mt-6 max-w-xl text-base leading-relaxed md:text-lg lg:mx-0">
-              Crio sites delicados, modernos e fáceis de usar para eventos,
-              negócios, projetos pessoais e tudo o que você imaginar.
-            </p>
-          </Revelar>
-          <Revelar
-            atraso={300}
-            className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
+      <div className="mx-auto max-w-4xl px-5 pt-16 pb-20 text-center md:pt-28 md:pb-28">
+        <Revelar>
+          <p className="text-vinho inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase shadow-sm backdrop-blur">
+            <Sparkles className="size-3.5" aria-hidden="true" />
+            Criação de sites personalizados
+          </p>
+        </Revelar>
+        <Revelar atraso={100}>
+          <h1
+            id="titulo-inicio"
+            className="font-serifa text-tinta mt-7 text-[2.75rem] leading-[1.04] font-medium tracking-tight sm:text-6xl lg:text-7xl"
           >
-            <BotaoWhatsapp className="w-full sm:w-auto">
-              Quero meu site
-            </BotaoWhatsapp>
-            <a
-              href="#exemplos"
-              className="text-vinho border-vinho/25 inline-flex w-full items-center justify-center gap-1.5 rounded-full border bg-white/60 px-7 py-4 font-semibold backdrop-blur transition-colors hover:bg-white sm:w-auto"
-            >
-              Ver exemplos
-              <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
-          </Revelar>
-          <Revelar atraso={400}>
-            <ul className="text-suave mt-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm lg:justify-start">
-              {[
-                'Feito sob medida',
-                'Perfeito no celular',
-                'Orçamento sem compromisso',
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-1.5">
-                  <Check className="text-vinho size-4" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Revelar>
-        </div>
-        <Revelar atraso={250}>
-          <Vitrine />
+            <span className="texto-degrade block pb-1 italic">a sua ideia</span>{' '}
+            merece um site
+            <br className="hidden sm:block" /> bonito de verdade
+          </h1>
+        </Revelar>
+        <Revelar atraso={200}>
+          <p className="text-suave mx-auto mt-7 max-w-xl text-base leading-relaxed md:text-lg">
+            Crio sites delicados, modernos e fáceis de usar para eventos,
+            negócios, projetos pessoais e tudo o que você imaginar.
+          </p>
+        </Revelar>
+        <Revelar
+          atraso={300}
+          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <BotaoWhatsapp className="w-full sm:w-auto">
+            Quero meu site
+          </BotaoWhatsapp>
+          <a
+            href="#exemplos"
+            className="text-vinho border-vinho/25 inline-flex w-full items-center justify-center gap-1.5 rounded-full border bg-white/60 px-7 py-4 font-semibold backdrop-blur transition-colors hover:bg-white sm:w-auto"
+          >
+            Ver exemplos
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+          </a>
+        </Revelar>
+        <Revelar atraso={400}>
+          <ul className="text-suave mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+            {[
+              'Feito sob medida',
+              'Perfeito no celular',
+              'Orçamento sem compromisso',
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-1.5">
+                <Check className="text-vinho size-4" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Revelar>
+        <Revelar atraso={500} className="mt-14">
+          <Divisor />
         </Revelar>
       </div>
     </section>
-  )
-}
-
-export function Letreiro() {
-  const itens = [...letreiro, ...letreiro]
-  return (
-    <div
-      aria-hidden="true"
-      className="bg-vinho text-creme relative overflow-hidden py-4 md:py-5"
-    >
-      <div className="animate-letreiro flex w-max gap-8 md:gap-10">
-        {itens.map((item, indice) => (
-          <span
-            key={`${item}-${indice}`}
-            className="font-serifa flex items-center gap-8 text-xl whitespace-nowrap italic md:gap-10 md:text-2xl"
-          >
-            {item}
-            <Sparkles className="text-dourado size-4" />
-          </span>
-        ))}
-      </div>
-    </div>
   )
 }
 
@@ -524,10 +413,6 @@ export function Sobre() {
     >
       <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
         <Revelar className="relative mx-auto">
-          <div
-            aria-hidden="true"
-            className="border-dourado/60 animate-girar-lento absolute -inset-4 rounded-full border border-dashed"
-          />
           <div
             aria-hidden="true"
             className="from-blush via-rosa to-pessego relative flex size-48 items-center justify-center rounded-full bg-gradient-to-br shadow-[0_30px_60px_-25px_rgb(123_45_67/0.6)] md:size-64"
