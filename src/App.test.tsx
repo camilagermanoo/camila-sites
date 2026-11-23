@@ -48,6 +48,17 @@ describe('site de vendas', () => {
     ).not.toBeInTheDocument()
   })
 
+  it('usa o menu do celular até a largura de computador', () => {
+    render(<App />)
+    expect(screen.getByRole('navigation', { name: 'Principal' })).toHaveClass(
+      'hidden',
+      'lg:block',
+    )
+    expect(screen.getByRole('button', { name: 'Abrir menu' })).toHaveClass(
+      'lg:hidden',
+    )
+  })
+
   it('mostra a resposta ao clicar numa dúvida', async () => {
     const usuario = userEvent.setup()
     render(<App />)

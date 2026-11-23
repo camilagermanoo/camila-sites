@@ -32,7 +32,7 @@ export function Cabecalho() {
           Camila Germano
         </a>
 
-        <nav aria-label="Principal" className="hidden md:block">
+        <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-1 text-sm font-medium">
             {navegacao.map((item) => (
               <li key={item.href}>
@@ -51,7 +51,7 @@ export function Cabecalho() {
           href={linkWhatsapp(mensagemPadrao)}
           target="_blank"
           rel="noreferrer"
-          className="bg-vinho hover:bg-vinho-escuro hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_25px_-10px_rgb(123_45_67/0.7)] transition-all hover:-translate-y-0.5 md:inline-flex"
+          className="bg-vinho hover:bg-vinho-escuro hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_25px_-10px_rgb(123_45_67/0.7)] transition-all hover:-translate-y-0.5 lg:inline-flex"
         >
           <MessageCircle className="size-4" aria-hidden="true" />
           Pedir orçamento
@@ -59,7 +59,7 @@ export function Cabecalho() {
 
         <button
           type="button"
-          className="text-vinho bg-blush inline-flex size-11 items-center justify-center rounded-full md:hidden"
+          className="text-vinho bg-blush inline-flex size-11 items-center justify-center rounded-full lg:hidden"
           aria-expanded={aberto}
           aria-controls="menu-celular"
           aria-label={aberto ? 'Fechar menu' : 'Abrir menu'}
@@ -73,7 +73,7 @@ export function Cabecalho() {
         <nav
           id="menu-celular"
           aria-label="Menu do celular"
-          className="border-borda/80 bg-creme border-t px-5 pb-6 md:hidden"
+          className="border-borda/80 bg-creme border-t px-5 pb-6 lg:hidden"
         >
           <ul className="flex flex-col py-2">
             {navegacao.map((item) => (
