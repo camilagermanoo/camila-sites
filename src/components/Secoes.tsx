@@ -143,7 +143,7 @@ function Vitrine() {
 
       <div
         aria-hidden="true"
-        className="animate-flutuar absolute -top-5 right-2 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-4s] sm:-right-6 md:text-sm"
+        className="animate-flutuar absolute -top-5 right-2 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-4s] sm:-right-6 md:text-sm lg:right-2 xl:-right-6"
       >
         <span className="flex size-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
           <Check className="size-3.5" />
@@ -153,7 +153,7 @@ function Vitrine() {
 
       <div
         aria-hidden="true"
-        className="animate-flutuar absolute right-0 bottom-0 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-1s] sm:-right-4 md:text-sm lg:-bottom-8"
+        className="animate-flutuar absolute right-0 bottom-0 flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs font-semibold shadow-[0_20px_40px_-18px_rgb(74_26_42/0.5)] [animation-delay:-1s] sm:-right-4 md:text-sm lg:right-2 lg:-bottom-8 xl:-right-4"
       >
         <span className="bg-blush text-vinho flex size-6 items-center justify-center rounded-full">
           <Heart className="size-3.5 fill-current" />
