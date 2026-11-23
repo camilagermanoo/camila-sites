@@ -446,18 +446,16 @@ export function Sobre() {
             identidade, do jeitinho que você imaginou.
           </p>
           <ul className="mt-6 flex flex-wrap justify-center gap-2 md:justify-start">
-            {[
-              'Formada em ADS',
-              'Atendimento personalizado',
-              'Conversa direta pelo WhatsApp',
-            ].map((item) => (
-              <li
-                key={item}
-                className="border-borda text-tinta rounded-full border bg-white px-4 py-2 text-sm font-medium"
-              >
-                {item}
-              </li>
-            ))}
+            {['Atendimento personalizado', 'Conversa direta pelo WhatsApp'].map(
+              (item) => (
+                <li
+                  key={item}
+                  className="border-borda text-tinta rounded-full border bg-white px-4 py-2 text-sm font-medium"
+                >
+                  {item}
+                </li>
+              ),
+            )}
           </ul>
           <a
             href={contato.portfolio}
