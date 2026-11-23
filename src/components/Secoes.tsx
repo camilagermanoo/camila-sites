@@ -218,26 +218,55 @@ export function Exemplos() {
           {exemplos.map((exemplo) => (
             <li
               key={exemplo.url}
-              className="border-borda bg-creme flex flex-col rounded-2xl border p-6 md:p-8"
+              className="border-borda bg-creme flex flex-col overflow-hidden rounded-2xl border"
             >
-              <span className="bg-rosa text-terracota w-fit rounded-full px-3 py-1 text-xs font-semibold tracking-wider uppercase">
-                {exemplo.categoria}
-              </span>
-              <h3 className="font-serifa text-tinta mt-4 text-3xl font-semibold">
-                {exemplo.nome}
-              </h3>
-              <p className="text-suave mt-2 flex-1 leading-relaxed">
-                {exemplo.descricao}
-              </p>
               <a
                 href={exemplo.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-terracota mt-6 inline-flex w-fit items-center gap-1.5 font-semibold underline-offset-4 hover:underline"
+                tabIndex={-1}
+                aria-hidden="true"
+                className="group block p-4 pb-0 md:p-5 md:pb-0"
               >
-                Ver o site
-                <ArrowUpRight className="size-4" aria-hidden="true" />
+                <div className="border-borda overflow-hidden rounded-t-xl border border-b-0 bg-white shadow-sm">
+                  <div className="border-borda flex items-center gap-1.5 border-b px-3 py-2">
+                    <span className="bg-rosa size-2.5 rounded-full" />
+                    <span className="bg-dourado/60 size-2.5 rounded-full" />
+                    <span className="bg-borda size-2.5 rounded-full" />
+                    <span className="bg-creme text-suave ml-2 truncate rounded-full px-3 py-0.5 text-[11px]">
+                      {new URL(exemplo.url).host}
+                    </span>
+                  </div>
+                  <img
+                    src={exemplo.capa}
+                    alt=""
+                    loading="lazy"
+                    width={1200}
+                    height={658}
+                    className="aspect-[1200/658] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
               </a>
+              <div className="flex flex-1 flex-col p-6 md:p-8">
+                <span className="bg-rosa text-terracota w-fit rounded-full px-3 py-1 text-xs font-semibold tracking-wider uppercase">
+                  {exemplo.categoria}
+                </span>
+                <h3 className="font-serifa text-tinta mt-4 text-3xl font-semibold">
+                  {exemplo.nome}
+                </h3>
+                <p className="text-suave mt-2 flex-1 leading-relaxed">
+                  {exemplo.descricao}
+                </p>
+                <a
+                  href={exemplo.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-terracota mt-6 inline-flex w-fit items-center gap-1.5 font-semibold underline-offset-4 hover:underline"
+                >
+                  Ver o site
+                  <ArrowUpRight className="size-4" aria-hidden="true" />
+                </a>
+              </div>
             </li>
           ))}
           <li className="border-dourado flex flex-col items-center justify-center rounded-2xl border border-dashed p-6 text-center md:p-8">

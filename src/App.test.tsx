@@ -1,7 +1,13 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
-import { duvidas, linkWhatsapp, mensagemPadrao, servicos } from './content'
+import {
+  duvidas,
+  exemplos,
+  linkWhatsapp,
+  mensagemPadrao,
+  servicos,
+} from './content'
 
 describe('site de vendas', () => {
   it('mostra o título principal', () => {
@@ -52,6 +58,23 @@ describe('site de vendas', () => {
     await usuario.click(pergunta)
     expect(pergunta).toHaveAttribute('aria-expanded', 'true')
     expect(screen.getByText(duvidas[1].resposta)).toBeVisible()
+  })
+})
+
+describe('exemplos', () => {
+  it('mostra a prévia da capa de cada site com link para ele', () => {
+    const { container } = render(<App />)
+    const secao = screen.getByRole('region', {
+      name: 'Sites que já estão no ar',
+    })
+    exemplos.forEach((exemplo) => {
+      const capa = container.querySelector(`img[src="${exemplo.capa}"]`)
+      expect(capa).toBeInTheDocument()
+      expect(capa?.closest('a')).toHaveAttribute('href', exemplo.url)
+      expect(
+        within(secao).getByRole('heading', { name: exemplo.nome }),
+      ).toBeInTheDocument()
+    })
   })
 })
 
