@@ -7,6 +7,7 @@ import {
   Duvidas,
   Exemplos,
   Inicio,
+  Letreiro,
   Rodape,
   Servicos,
   Sobre,
@@ -19,6 +20,7 @@ export default function App() {
       <Cabecalho />
       <main>
         <Inicio />
+        <Letreiro />
         <Servicos />
         <Diferenciais />
         <ComoFunciona />
@@ -33,9 +35,15 @@ export default function App() {
         target="_blank"
         rel="noreferrer"
         aria-label="Conversar no WhatsApp"
-        className="bg-terracota hover:bg-terracota-escuro fixed right-4 bottom-4 z-30 flex size-14 items-center justify-center rounded-full text-white shadow-lg transition-colors md:right-6 md:bottom-6"
+        className="group fixed right-4 bottom-4 z-30 flex size-14 items-center justify-center md:right-6 md:bottom-6"
       >
-        <MessageCircle className="size-6" aria-hidden="true" />
+        <span
+          aria-hidden="true"
+          className="bg-vinho animate-pulsar absolute inset-0 rounded-full"
+        />
+        <span className="bg-vinho group-hover:bg-vinho-escuro relative flex size-14 items-center justify-center rounded-full text-white shadow-[0_15px_35px_-10px_rgb(123_45_67/0.8)] transition-transform duration-300 group-hover:scale-105">
+          <MessageCircle className="size-6" aria-hidden="true" />
+        </span>
       </a>
     </>
   )

@@ -38,6 +38,19 @@ export const navegacao = [
   { href: '#duvidas', rotulo: 'Dúvidas' },
 ]
 
+export const letreiro = [
+  'Casamentos',
+  'Aniversários',
+  'Chás de bebê',
+  'Formaturas',
+  'Convites digitais',
+  'Negócios',
+  'Cardápios',
+  'Catálogos',
+  'Portfólios',
+  'Link na bio',
+]
+
 export type Servico = {
   titulo: string
   descricao: string

@@ -63,12 +63,12 @@ describe('site de vendas', () => {
 
 describe('exemplos', () => {
   it('mostra a prévia da capa de cada site com link para ele', () => {
-    const { container } = render(<App />)
+    render(<App />)
     const secao = screen.getByRole('region', {
       name: 'Sites que já estão no ar',
     })
     exemplos.forEach((exemplo) => {
-      const capa = container.querySelector(`img[src="${exemplo.capa}"]`)
+      const capa = secao.querySelector(`img[src="${exemplo.capa}"]`)
       expect(capa).toBeInTheDocument()
       expect(capa?.closest('a')).toHaveAttribute('href', exemplo.url)
       expect(
