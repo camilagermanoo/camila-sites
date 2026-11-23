@@ -438,9 +438,8 @@ export function Sobre() {
           </h2>
           <p className="text-suave mt-6 leading-relaxed">
             Sou desenvolvedora web, formada em Análise e Desenvolvimento de
-            Sistemas, e trabalho com React e TypeScript, tecnologias modernas
-            usadas no mercado. Gosto de unir código bem feito com um visual
-            delicado, para que o seu site seja bonito e funcione de verdade.
+            Sistemas. Gosto de unir código bem feito com um visual delicado,
+            para que o seu site seja bonito e funcione de verdade.
           </p>
           <p className="text-suave mt-4 leading-relaxed">
             Cada projeto é único: eu escuto a sua ideia e crio um site com a sua
@@ -450,7 +449,7 @@ export function Sobre() {
             {[
               'Formada em ADS',
               'Atendimento personalizado',
-              'Atendimento pelo WhatsApp',
+              'Conversa direta pelo WhatsApp',
             ].map((item) => (
               <li
                 key={item}
