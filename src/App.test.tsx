@@ -87,6 +87,23 @@ describe('site de vendas', () => {
   })
 })
 
+describe('quem sou eu', () => {
+  it('mostra as tags de apresentação', () => {
+    render(<App />)
+    const secao = screen.getByRole('region', { name: /Oi, eu sou a/i })
+    ;[
+      'Formada em ADS',
+      'Atendimento personalizado',
+      'Atendimento pelo WhatsApp',
+    ].forEach((tag) => {
+      expect(within(secao).getByText(tag)).toBeInTheDocument()
+    })
+    expect(
+      within(secao).queryByText('React e TypeScript'),
+    ).not.toBeInTheDocument()
+  })
+})
+
 describe('exemplos', () => {
   it('mostra a prévia da capa de cada site com link para ele', () => {
     render(<App />)

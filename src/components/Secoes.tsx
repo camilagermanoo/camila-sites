@@ -449,7 +449,7 @@ export function Sobre() {
           <ul className="mt-6 flex flex-wrap justify-center gap-2 md:justify-start">
             {[
               'Formada em ADS',
-              'React e TypeScript',
+              'Atendimento personalizado',
               'Atendimento pelo WhatsApp',
             ].map((item) => (
               <li
