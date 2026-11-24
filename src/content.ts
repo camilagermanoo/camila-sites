@@ -122,7 +122,7 @@ export const exemplos: Exemplo[] = [
     categoria: 'Turismo',
     descricao:
       'Site de passeios em Fernando de Noronha, com reservas direto pelo WhatsApp.',
-    url: 'https://adriano-noronha.vercel.app/',
+    url: 'https://adrianonoronhapasseios.com.br/',
     capa: capaAdrianoNoronha,
   },
   {
