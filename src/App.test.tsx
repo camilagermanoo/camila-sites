@@ -116,6 +116,21 @@ describe('exemplos', () => {
       ).toBeInTheDocument()
     })
   })
+
+  it('leva o site do Adriano Noronha para o domínio próprio', () => {
+    render(<App />)
+    const secao = screen.getByRole('region', {
+      name: 'Sites que já estão no ar',
+    })
+    const cartao = within(secao)
+      .getByRole('heading', { name: 'Adriano Noronha' })
+      .closest('li')!
+    expect(
+      within(cartao).getByRole('link', { name: /ver o site/i }),
+    ).toHaveAttribute('href', 'https://adrianonoronhapasseios.com.br/')
+    expect(cartao).toHaveTextContent('adrianonoronhapasseios.com.br')
+    expect(secao.innerHTML).not.toContain('vercel.app')
+  })
 })
 
 describe('linkWhatsapp', () => {
